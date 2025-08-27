@@ -32,7 +32,6 @@ function autoRepair (name, delay, limit, minHealth, maxHealth) {
         const items = Array.from(mainWin.querySelectorAll('#type2_3 .item'))
         .filter(el => {
             const title = el.querySelector('h1');
-            (el.querySelector('.item_info h2').textContent).match(/[0-9]/gi)
             return title && title.textContent.trim() === name;
         });
         if (items.length === 0) {return}
@@ -61,6 +60,7 @@ function autoRepair (name, delay, limit, minHealth, maxHealth) {
                 setTimeout(()=>{
                     main = getMainWindow();
                     main.querySelector('.pr_btn1').click()
+                    --limit
                     setTimeout(()=>{startAutoRepair()},randTime());
                 },1000)
 

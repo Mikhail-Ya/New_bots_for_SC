@@ -2,13 +2,14 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <title>Удаление</title>
+  <title>Восстановление</title>
   <style>
     body {
       width: 300px;
       padding: 15px;
       font-family: Arial, sans-serif;
       font-size: 14px;
+      background:rgba(150, 219, 153, 0.83) url("./icons/icon128.png") 50% no-repeat;
     }
     label {
       display: block;
@@ -19,45 +20,44 @@
       padding: 8px;
       margin-bottom: 10px;
       box-sizing: border-box;
+      border-radius: 5px;
     }
     button {
       background: #4285f4;
       color: white;
       border: none;
       cursor: pointer;
+      border-radius: 10px;
     }
     button:disabled {
       background: #ccc;
     }
-    #status {
-      font-size: 12px;
-      color: #555;
-      margin-top: 10px;
+    .kit-container {
+      display: grid;
+      justify-content: center;
+      grid-template-columns: 1fr 1fr;
     }
   </style>
 </head>
 <body>
-<h3>Удаление предметов</h3>
+<h3>Авто ремонт для задания</h3>
+<div class="kit-container">
+    <label for="item-name">Название хилки:</label>
+    <input type="text" id="item-name" placeholder="Миниверфь"/>
 
-<label for="item-name">Название:</label>
-<input type="text" id="item-name" placeholder="Миниверфь"/>
+    <label for="delay">Задержка (мс):</label>
+    <input type="number" id="delay" value="2000" min="500" />
 
-<label for="delay">Задержка (мс):</label>
-<input type="number" id="delay" value="1500" min="500" />
+    <label for="count">Сколько использований надо:</label>
+    <input type="number" id="count" value="600" min="0" />
 
-<label for="count">Сколько использований надо:</label>
-<input type="number" id="count" value="600" min="0" />
+    <label for="min-health">Комплект малый:</label>
+    <input type="number" id="min-health" value="3" min="1" />
 
-<label for="min-health">Комплект малый:</label>
-<input type="number" id="min-health" value="3" min="1" />
-
-<label for="max-health">Комплект большой:</label>
-<input type="number" id="max-health" value="1" min="1" />
-
+    <label for="max-health">Комплект большой:</label>
+    <input type="number" id="max-health" value="1" min="1" />
+</div>
 <button id="injectButton">Запустить</button>
-
-<div id="status">Готов</div>
-
 <script src="popup.js"></script>
 </body>
 </html>
