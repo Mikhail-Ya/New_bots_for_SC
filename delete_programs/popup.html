@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width"/>
+    <link rel="stylesheet" href="popup.css"/>
+    <title>Автоудаление программ</title>
+  </head>
+<body>
+<div class="container">
+  <h2>Настройки</h2>
+  <label>
+    Что удаляем:
+    <select id="select_box">
+      <optgroup label="Имплантанты">
+        <option value="type1_1">боевые</option>
+        <option value="type1_2">защитные</option>
+        <option value="type1_3">восстанавливающие</option>
+        <option value="type1_4">прочие</option>
+      </optgroup>
+      <hr />
+      <optgroup label="Программы">
+        <option value="type2_1">боевые</option>
+        <option value="type2_2">защитные</option>
+        <option value="type2_3">восстанавливающие</option>
+        <option value="type2_4">прочие</option>
+      </optgroup>
+    </select>
+  </label>
+
+  <label>Предмет:<br><input type="text" id="targetItem" value="Мультистрелок v3.0 CV"/></label>
+  <label>Задержка:<br><input type="number" id="deleteDelay" value="1500" min="500"/></label>
+  <div class="buttons">
+    <button id="startBtn">▶️ Запустить</button>
+    <button id="stopBtn">⏹️ Остановить</button>
+  </div>
+  <div id="status">Состояние: ожидание</div>
+</div>
+<script src="popup.js"></script>
+</body></html>
