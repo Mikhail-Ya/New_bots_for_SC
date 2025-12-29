@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru" code="utf-8">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <style>
+    body { width: 300px; padding: 10px; font-family: sans-serif; }
+    label { display: flex;
+      flex-direction: row;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    input, select { margin: 5px; }
+    button { margin-top: 10px; width: 100%; }
+    .section_abil input { width: 50px; margin: 2px}
+  </style>
+</head>
+<body>
+<h3>Пульт управления</h3>
+<select id="number_beetles">
+  <option value="0">Один жук</option>
+ <!-- <option value="1">До 5 жуков</option> -->
+</select>
+<label for="put" id="labl_put">Каким ставить жука:
+<input type="number" id="put" value="0" min="0" max="3">
+</label>
+
+<section id="bug_completion">
+  <label for="bug_completions">Какой комплект по счету(сверху в низ):
+    <input type="number" id="bug_completions" value="1" min="1" max="5">
+  </label>
+</section>
+<section class="section_abil">
+  <label for="abil50">
+    Абилка 50
+    <input type="number" id="abil50" value="0" min="0">
+    пользований
+  </label>
+  <label for="abil100">
+    Абилка 100
+    <input type="number" id="abil100" value="0" min="0">
+    пользований
+  </label>
+  <label for="abil200">
+    Абилка 200
+    <input type="number" id="abil200" value="0" min="0">
+    пользований
+  </label>
+  <label for="abilKr">
+    Абилка кредовая
+    <input type="number" id="abilKr" value="0" min="0">
+    пользований
+  </label>
+  <label for="abilEkr">
+    Абилка екровая
+    <input type="number" id="abilEkr" value="0" min="0">
+    пользований
+  </label>
+</section>
+<label><input type="checkbox" id="complect"> Использовать комплекты</label>
+<label><input type="checkbox" id="downup" checked> Режим "от ставим и выше"</label>
+<label><input type="checkbox" id="non_abils"> Ждать восстановление энергии</label>
+
+<button id="start">▶ Запустить</button>
+<button id="stop">⏹ Остановить</button>
+<button id="save">💾 Сохранить настройки</button>
+
+<script src="popup.js"></script>
+</body>
+</html>

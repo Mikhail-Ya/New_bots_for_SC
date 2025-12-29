@@ -3,7 +3,8 @@ body {
     width: 300px;
     font-family: sans-serif;
     padding: 10px;
-    background: #f0f0f0
+    background: #f0f0f0 url(icons/16x16-icon-45600.png) no-repeat;
+    background-size: 100% 100%;
 }
 
 .container {

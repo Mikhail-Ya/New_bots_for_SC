@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width"/>
+    <link rel="stylesheet" href="popup.css"/>
+    <title>Автопрохождение поисковой миссии</title>
+  </head>
+<body>
+<div class="container">
+  <h2>Настройки</h2>
+  <label>
+    Какая поисковая миссия:
+    <select id="select_box">
+        <option value="1">Нейтронная Звезда</option>
+        <option value="2">Синяя Туманность</option>
+        <option value="3">Золотые Светила</option>
+        <option value="4">Потерянная Галактика</option>
+    </select>
+  </label>
+
+  <label>Автокапча:<input type="checkbox" id="checkSecurity"/></label>
+  <label> Сборка дропа: <input type="checkbox" id="checkPassage"/></label>
+  <label>Лимит контейнеров:<input type="number" id="limitItems" value="5" min="5"/></label>
+  <div class="buttons">
+    <button id="startBtn">▶️ Запустить</button>
+    <button id="stopBtn">⏹️ Остановить</button>
+  </div>
+  <h2 id="result"></h2>
+</div>
+<script src="popup.js"></script>
+</body></html>

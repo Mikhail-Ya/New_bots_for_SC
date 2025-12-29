@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width"/>
+    <link rel="stylesheet" href="popup.css"/>
+    <title>Автоматическое участие в бою</title>
+</head>
+<body>
+<div class="container">
+    <h2>Настройки</h2>
+    <section id="select_box">
+        <label> Вертикаль(?555):
+            <input type="number" value="5" min="1" max="10" id="vertiсal">
+        </label>
+        <label>
+            Горизонталь(55??):
+            <input type="number" value="55" min="51" max="60" id="horizontal">
+        </label>
+    </section>
+    <label>
+        Атакуем?
+        <input type="checkbox" id="scorePoints">
+    </label>
+    <label>
+        Сообщать об обменнике:
+        <input type="checkbox" id="showConvert">
+    </label>
+    <label>
+        Выйти в конце из игры:
+        <input type="checkbox" id="getOut">
+    </label>
+    <label>
+        Во сколько минут конец боя:
+        <input type="number" value="1" min="0" max="59" id="timeEnd">
+    </label>
+    <div class="buttons">
+        <button id="startBtn">▶️ Запустить</button>
+        <button id="stopBtn">⏹️ Остановить</button>
+    </div>
+    <div id="status">Состояние: ожидание</div>
+</div>
+<script src="popup.js"></script>
+</body>
+</html>

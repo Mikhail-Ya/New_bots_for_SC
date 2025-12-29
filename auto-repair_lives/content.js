@@ -52,7 +52,9 @@ function autoRepair (name, delay, limit, minHealth, maxHealth) {
             }
             if(main.querySelector('#infoWindow').style.visibility === 'visible') {
                 healphy = Number(main.querySelector('#infoWindowMessage')?.textContent.match(/\d/g)?.join(''))
+
                 hpPers -= healphy | 0
+
             }
             if ((hpPers - healphy) > 0 && uses >= 1 && 0 < limit) {
                 item.querySelector('tr:nth-of-type(2) td:nth-of-type(2) img').click()
