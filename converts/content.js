@@ -2,20 +2,11 @@
 let isRunning = false;
 let timeId = 0;
 let timer = 0;
-// --- ОБРАБОТЧИК СООБЩЕНИЙ ИЗ POPUP ---
-chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
-    if(msg.action === 'start') {
-        isRunning = true;
-        msg.convert === 'foggy' ?
-            getBuildFoggy(msg.build,msg.buildCount) :
-            tracking(msg.build,msg.buildCount);
+const getMainWindow =(name = 'main')=> document
+          .getElementsByName(name + "Window")[0].contentDocument
 
-    } else if(msg.action === 'stop') {
-        isRunning = false;
-    }
 
-});
-const getMainWindow =(name = 'main')=> document.getElementsByName(name + "Window")[0].contentDocument
+
 
 const clearTimeoutAll =()=>{
     let last_timeout = setTimeout(()=>{},0)
@@ -48,23 +39,29 @@ async function getBuildFoggy(build,count) {
         if(!isRunning){ return console.log('ошибка установки')}
         buildIterval(count);
 }
-const timerInterval =()=>{
-    setInterval(()=>{
-        timer--
-    },1000)
+const timerInterval =(trigger)=>{
+    let timerId = 0;
+     if ('start' === trigger){
+         timerId = setInterval(()=>{
+             timer--
+         },1000)
+     };
+     if('stop' === trigger){ clearInterval(timerId); };
 }
+
 // конвертер глубокого
 const tracking = (build,count) => {
     let winInfo = getMainWindow().getElementById('infoWindow');
+    if(!isRunning) return
     if(winInfo.style.visibility === 'visible'){
         let textInfo = getMainWindow().querySelector('.infoText').textContent
-        if(textInfo.includes('удалось') && isRunning){
+        if(textInfo.includes('удалось')){
             getMainWindow().querySelector('.infoBtn').click()
             setTimeout(()=>{
                 getBuildSpace(build,--count);
             },2000)
-        } else if(getMainWindow().getElementById('endTime')){
-            let endtime = +getMainWindow().getElementById('endTime').textContent
+        } else if(getMainWindow().getElementById('endtime')){
+            let endtime = +getMainWindow().getElementById('endtime').textContent
             if(endtime > timer+20){
                 getMainWindow('menu')
                 .querySelector('.right img:last-child').click();
@@ -79,20 +76,38 @@ const tracking = (build,count) => {
         }
     } else {
         setTimeout(()=>{
-        getBuildSpace(build,count);},5000)
+        getBuildSpace(build,--count);},5000)
     }
 }
-
 async function getBuildSpace(build,count) {
     clearTimeoutAll();
+    timerInterval('stop');
     isRunning = await setBuildItems(build);
     if(!isRunning){ return console.log('ошибка установки')}
     await getMainWindow().getElementById('but1').click();
     if(isRunning && 0 < count){
       setTimeout(()=> {
           timer = +getMainWindow().getElementById('endtime').textContent;
-          timerInterval()
+          timerInterval('start')
           tracking(build,count)
-      },4000)
+      },5000)
     }
 }
+
+
+
+// --- ОБРАБОТЧИК СООБЩЕНИЙ ИЗ POPUP ---
+chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
+    if(msg.action === 'start') {
+        isRunning = true;
+        msg.convert === 'foggy' ?
+            getBuildFoggy(msg.build,msg.buildCount) :
+            tracking(msg.build,msg.buildCount+1);
+        timer = +getMainWindow().getElementById('endtime').textContent | 0;
+        if(0 < timer) timerInterval('start')
+    } else if(msg.action === 'stop') {
+        timerInterval('stop')
+        isRunning = false;
+    }
+
+});
